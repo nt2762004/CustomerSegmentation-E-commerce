@@ -4,7 +4,7 @@ Dự án này xây dựng một hệ thống phân tích hành vi khách hàng s
 
 Hệ thống tập trung vào việc khai phá dữ liệu giao dịch, phân nhóm khách hàng thành các tập hợp có đặc điểm tương đồng (như VIP, Trung thành, Ngủ đông...) để hỗ trợ doanh nghiệp đưa ra các chiến lược Marketing cá nhân hóa hiệu quả.
 
-**Link Dataset**: https://archive.ics.uci.edu/dataset/352/online+retail
+**Link Dataset**: [Online Retail Dataset (UCI/Kaggle)](https://archive.ics.uci.edu/dataset/352/online+retail)
 
 ## Cấu trúc Thư mục
 
