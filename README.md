@@ -1,10 +1,59 @@
+# E-commerce Customer Segmentation
+
+This project builds a customer behavior analysis system using the **RFM model (Recency, Frequency, Monetary)** combined with the **K-Means Clustering** Machine Learning algorithm.
+
+The system focuses on exploring transaction data, grouping customers into sets with similar characteristics (such as VIP, Loyal, Hibernating...) to help businesses make effective personalized Marketing strategies.
+
+## Folder Structure
+
+```
+├── customer_segmentation.ipynb   # Main Notebook: Full process from data processing, RFM to clustering and visualization
+├── online+retail/                # Data folder
+│   └── Online Retail.xlsx        # Original transaction data
+└── README.md                     # Project documentation
+```
+
+### 1. `customer_segmentation.ipynb` (Analysis and Clustering)
+This notebook performs the entire End-to-End Data Science process.
+
+*   **Goal:** Convert raw transaction data into actionable customer segmentation insights.
+*   **Process:**
+    *   **Data Cleaning:**
+        *   *Filter noise:* Remove records missing `CustomerID` (unidentified customers).
+        *   *Handle cancelled orders:* Remove transactions with `InvoiceNo` starting with 'C' (Cancelled) to avoid incorrect revenue figures.
+        *   *Logic cleaning:* Remove negative `Quantity` or `UnitPrice` values.
+    *   **Feature Engineering (Create RFM features):**
+        *   **Recency (R):** Number of days since the last purchase (lower is better).
+        *   **Frequency (F):** Total number of purchases (higher is better).
+        *   **Monetary (M):** Total money spent (higher is better).
+    *   **Normalization:**
+        *   *Log Transformation:* Apply Log function to handle skewness of financial data (where most customers spend little and a few spend a lot).
+        *   *StandardScaler:* Bring 3 indicators R, F, M to the same scale (mean=0, std=1) so the K-Means algorithm is not biased by variables with large values (like Monetary).
+    *   **Modeling (K-Means Clustering):**
+        *   *Elbow Method:* Use the elbow chart to determine the optimal number of clusters ($k$) (balancing between cluster compactness and number of clusters).
+        *   *Clustering:* Divide customers into $k$ groups based on Euclidean distance in RFM space.
+    *   **Visualization & Insight:**
+        *   *3D Scatter Plot:* Visualize the separation of clusters in 3D space.
+        *   *Snake Plot:* Line chart comparing normalized values between groups, helping to easily identify trends.
+    *   **Auto-Labeling:**
+        *   Automatically calculate ranking score for each cluster using the formula: $Score = Frequency + Monetary - Recency$.
+        *   Assign business labels like: **VIP (Diamond)**, **Loyal (Gold)**, **Potential**, **At Risk**... based on the score.
+
+## Installation Requirements
+
+The project requires the following Python libraries:
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn plotly openpyxl
+```
+
+---
+
 # Phân khúc khách hàng E-commerce (Customer Segmentation)
 
 Dự án này xây dựng một hệ thống phân tích hành vi khách hàng sử dụng mô hình **RFM (Recency, Frequency, Monetary)** kết hợp với thuật toán Machine Learning **K-Means Clustering**.
 
-Hệ thống tập trung vào việc khai phá dữ liệu giao dịch, phân nhóm khách hàng thành các tập hợp có đặc điểm tương đồng (như VIP, Trung thành...) để hỗ trợ doanh nghiệp đưa ra các chiến lược Marketing cá nhân hóa hiệu quả.
-
-**Link Dataset**: [Online Retail Dataset (UCI/Kaggle)](https://archive.ics.uci.edu/dataset/352/online+retail)
+Hệ thống tập trung vào việc khai phá dữ liệu giao dịch, phân nhóm khách hàng thành các tập hợp có đặc điểm tương đồng (như VIP, Trung thành, Ngủ đông...) để hỗ trợ doanh nghiệp đưa ra các chiến lược Marketing cá nhân hóa hiệu quả.
 
 ## Cấu trúc Thư mục
 
